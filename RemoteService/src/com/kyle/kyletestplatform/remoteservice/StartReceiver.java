@@ -12,6 +12,7 @@ public class StartReceiver extends BroadcastReceiver{
 		// TODO Auto-generated method stub
 		Log.i("Receiver","get intent "+intent.getAction());
 		Intent service = new Intent(context,RemoteService.class);
+//		intent.putExtra(name, value)
 		context.startService(service);
 	}
 

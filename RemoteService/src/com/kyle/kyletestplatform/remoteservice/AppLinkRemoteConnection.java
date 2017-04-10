@@ -10,24 +10,27 @@ public class AppLinkRemoteConnection {
 
 	private Context mContext = null;
 	private IRemoteService mService = null;
+	private AppLinkServiceListener mListener = null;
 	private ServiceConnection mConnection = new ServiceConnection() {
 
 		@Override
 		public void onServiceConnected(ComponentName name, IBinder service) {
 			// TODO Auto-generated method stub
-
+			mService = IRemoteService.Stub.asInterface(service);
+			mListener.onServiceConnected();
 		}
 
 		@Override
 		public void onServiceDisconnected(ComponentName name) {
 			// TODO Auto-generated method stub
-
+			mListener.onServiceDisconnected();
 		}
 	};
 	
 	
-	public AppLinkRemoteConnection(Context context){
+	public AppLinkRemoteConnection(Context context,AppLinkServiceListener listener){
 		mContext = context;
+		mListener = listener;
 	}
 	
 	public void connect(){
